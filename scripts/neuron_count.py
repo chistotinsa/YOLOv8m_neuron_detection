@@ -82,11 +82,8 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
 
 
 def main():
-    print('bebra0')
     files_count = len(os.listdir(photo_path))
-    print('bebra1')
     preds = yolo_inference(photo_path, model_path, files_count)
-    print('bebra2')
     df = pd.DataFrame(columns=['image_name', 'neurons_in_300µm'])
 
     counter = 0
