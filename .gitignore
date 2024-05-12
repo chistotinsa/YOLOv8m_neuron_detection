@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+.idea/
+photos/
+runs/
+venv
+results/results.xlsx
+models/YOLOv8m_brain_cell_v1_maP50_0.634.pt
+models/YOLOv8m_brain_cell_v2_maP50_0.747.pt
