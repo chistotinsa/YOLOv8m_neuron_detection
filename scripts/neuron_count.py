@@ -1,14 +1,20 @@
-import argparse
 import cv2
 import os
 import numpy as np
 import pandas as pd
 import random
 from typing import List, Tuple
-from inference_model import yolo_inference
-from del_outliers import del_outliers
+from scripts.inference_model import yolo_inference
+from scripts.del_outliers import del_outliers
 
+
+photo_path = 'photos/'
 model_path = 'models/YOLOv8m_brain_cell_v3_maP50_0.742.pt'
+result_excel_path = 'results/results.xlsx'
+pixel_step = 950
+# 870pxl = 300µm. Set 950pxl for tech reasons (to add a frame in which
+# neurons that fall more than half into the 300 µm area will be detected)
+# Note that 300µm on 640x640pxl photo = 161 pixel_step (~ 176 if padding is used, which is preferable)
 
 
 def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_step: int) -> Tuple[str, int]:
@@ -20,8 +26,7 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     :param pixel_step: 300µm hippocampus area translated to pixels
     """
 
-    # image = cv2.imread(f'{photo_path}{image_path}')
-    image = cv2.imread(image_path)
+    image = cv2.imread(f'{photo_path}{image_path}')
 
     # Extracting coordinates of bbox centers
     x_values = [(rect[0] + rect[2]) / 2 for rect in intrend_annotations]
@@ -76,9 +81,12 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     return image_name, num_annotations_in_patch
 
 
-def main(photo_path, result_excel_path, pixel_step):
+def main():
+    print('bebra0')
     files_count = len(os.listdir(photo_path))
-    preds = yolo_inference(photo_path, model_path, files_count=files_count)
+    print('bebra1')
+    preds = yolo_inference(photo_path, model_path, files_count)
+    print('bebra2')
     df = pd.DataFrame(columns=['image_name', 'neurons_in_300µm'])
 
     counter = 0
@@ -94,22 +102,5 @@ def main(photo_path, result_excel_path, pixel_step):
     df.to_excel(result_excel_path, index=False)
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Neuron counting in hippocampus area.')
-
-    parser.add_argument('--photos', type=str, help='Path to the folder with photos. '
-                                                   r'Example: C:\Users\user\Desktop\neurons', required=True)
-
-    parser.add_argument('--results', type=str, help='Path where the Excel with results file will be created. '
-                                                    r'Example: C:\Users\user\Desktop\results.xlsx', required=True)
-
-    parser.add_argument('--pixel_step', type=int, help='Pixel equivalent of 300µm for select random hippocampus area. '
-                                                       'Default is 950, which is standart for 4096x3008pxl photos',
-                        required=False, default=950)
-    # 870pxl = 300µm. Set 950pxl for tech reasons (to add a frame in which
-    # neurons that fall more than half into the 300 µm area will be detected)
-    # Note that 300µm on 640x640pxl photo = 161 pixel_step (~ 176 if padding is used, which is preferable)
-
-    args = parser.parse_args()
-
-    main(photo_path=args.photos, result_excel_path=args.results, pixel_step=args.pixel_step)
+if __name__ == "main":
+    main()
