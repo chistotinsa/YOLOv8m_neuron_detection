@@ -8,9 +8,9 @@ from scripts.inference_model import yolo_inference
 from scripts.del_outliers import del_outliers
 
 
-photo_path = 'photos/'
-model_path = 'models/YOLOv8m_brain_cell_v3_maP50_0.742.pt'
-result_excel_path = 'results/results.xlsx'
+photo_path = '../photos/'
+model_path = '../models/YOLOv8m_brain_cell_v3_maP50_0.742.pt'
+result_excel_path = '../results/results.xlsx'
 pixel_step = 950
 # 870pxl = 300µm. Set 950pxl for tech reasons (to add a frame in which
 # neurons that fall more than half into the 300 µm area will be detected)
@@ -21,7 +21,7 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     """
     Сounts neurons in a random section of the hippocampus 300µm long.
     :param intrend_annotations: List of lists with coordinates of bboxes
-           with detected neurons in xyxy foramt without liers
+           with detected neurons in xyxy foramt without outliers
     :param image_path: path to the single image in folder with images
     :param pixel_step: 300µm hippocampus area translated to pixels
     """
@@ -102,5 +102,5 @@ def main():
     df.to_excel(result_excel_path, index=False)
 
 
-if __name__ == "main":
+if __name__ == '__main__':
     main()
