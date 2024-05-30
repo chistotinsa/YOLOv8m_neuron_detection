@@ -1,3 +1,5 @@
+numpy==1.24.3
 openpyxl==3.1.2
 opencv-python==4.7.0.72
+pandas==1.5.1
 ultralyticsplus==0.1.0
