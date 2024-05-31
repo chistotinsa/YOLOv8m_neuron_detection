@@ -12,6 +12,6 @@
 ```
 
 #### 2. Run the script
-For launching the main script that detects neurons on a photo and count them on a 300 μm hippocampus area — 
-1. Put your microscopic photos with a resolution of x by x
+To run the main script that detects neurons on a photo and count them on a 300 μm hippocampus area — 
+1. Put your microscopic photos with a resolution of x by x into the 'photo' folder
 2. Run scripts/neuron_count.py and check the 'results' folder
