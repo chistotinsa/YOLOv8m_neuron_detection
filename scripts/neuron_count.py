@@ -11,10 +11,13 @@ from scripts.del_outliers import del_outliers
 photo_path = '../photos/'
 model_path = '../models/YOLOv8m_brain_cell_v3_maP50_0.742.pt'
 result_excel_path = '../results/results.xlsx'
-pixel_step = 950
-# 870pxl = 300µm. Set 950pxl for tech reasons (to add a frame in which
-# neurons that fall more than half into the 300 µm area will be detected)
-# Note that 300µm on 640x640pxl photo = 161 pixel_step (~ 176 if padding is used, which is preferable)
+
+PIXEL_STEP = 950
+# 870pxl = 300µm on a 2048х1504pxl photo with microscopic magnification 20x.
+# We set pixel_step = 950pxl for tech reasons (to add a frame in which
+# neurons that fall more than half into the 300 µm area will be detected).
+# If you have another photo`s resolution: find out how much is 300µm in pixels
+# on your photo, add 9.2% to get your PIXEL_STEP value.
 
 
 def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_step: int) -> Tuple[str, int]:
@@ -91,7 +94,7 @@ def main():
         intrend_annotations = del_outliers(pred)
         image_name, num_annotations_in_patch = neuron_count(intrend_annotations=intrend_annotations,
                                                             image_path=photo,
-                                                            pixel_step=pixel_step)
+                                                            pixel_step=PIXEL_STEP)
         df.loc[counter, 'image_name'] = image_name
         df.loc[counter, 'neurons_in_300µm'] = num_annotations_in_patch
         counter += 1
