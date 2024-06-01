@@ -96,6 +96,7 @@ def main():
         df.loc[counter, 'neurons_in_300µm'] = num_annotations_in_patch
         counter += 1
 
+    os.makedirs(os.path.dirname(result_excel_path), exist_ok=True)
     df.to_excel(result_excel_path, index=False)
 
 
