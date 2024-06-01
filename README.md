@@ -1,7 +1,7 @@
 # YOLOv8m neuron detection
 
-This model allows count neurons stained using the Nissl method in the CA1 field of the hippocampus ​​300 μm area.
-It counts only alive cells. 
+This model allows count neurons stained using the Nissl method in the CA1 field of the hippocampus.
+It takes 300μm area on a hippocampus randomly and counts alive cells on it.
 
 The model takes photos of a rat`s hippocampus specimen as input. The microscopic magnification is 20x, 
 base photo resolution - 2048х1504 pixels.
@@ -23,3 +23,14 @@ To run the main script —
 2. Run scripts/neuron_count.py and check the 'results' folder
 3. The output includes Excel table with number of alive neurons on a random
    300 μm hippocampus area per each input photo and photos with detected neurons outlined in red boxes.
+
+## How we made this model
+The idea arose due to the fact that many biologists, for the purpose of brain research, are forced to 
+spend a lot of time manually counting brain cells in microscopic images. This job takes an incredible amount of hours. 
+That's why we came up with this project.
+
+1. The base model is YOLOv8m trained on the blood cells
+   by Keremberke taken [here](https://github.com/keremberke/awesome-yolov8-models)
+2. We made our own hippocampus neurons dataset, labeled it
+3. and finetuned Keremberke`s YOLOv8m on it.
+4. Then we wrote script that counts alive neurons on a random 300 μm hippocampus area.
