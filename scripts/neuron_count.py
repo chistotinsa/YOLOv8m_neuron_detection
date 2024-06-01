@@ -16,7 +16,7 @@ PIXEL_STEP = 950
 # 870pxl = 300µm on a 2048х1504pxl photo with microscopic magnification 20x.
 # We set pixel_step = 950pxl for tech reasons (to add a frame in which
 # neurons that fall more than half into the 300 µm area will be detected).
-# If you have another photo`s resolution: find out how much is 300µm in pixels
+# If you have another photo`s resolution: find out how many pixels are in 300µm
 # on your photo, add 9.2% to get your PIXEL_STEP value.
 
 
