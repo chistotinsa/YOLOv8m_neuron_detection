@@ -2,7 +2,6 @@
 .idea/
 .venv/
 scripts/__pycache__
-photos/
 runs/
 venv/
 results/results.xlsx
