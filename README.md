@@ -20,7 +20,7 @@ pip install -r requirements.txt
 #### 2. Run the script
 To run the main script — 
 1. Put your photos 2048х1504 pxls into a single folder (if you have another photo resolution - change the PIXEL_STEP value in scripts/neuron_count.py according to the docstrings)
-2. Run neuron_count.py from cmd/bash like this:  
+2. Run neuron_count.py from cmd/bash with flags --photo_path (folder with photos to process) and --results (path to the excel file with results) like this:  
 `python neuron_count.py --photo_path 'F:\Desktop\projects\neuron_detection\photos' --results 'F:\Desktop\projects\neuron_detection\results\results.xlsx'`
 4. The output includes Excel table with number of alive neurons on a random
    300 μm hippocampus area per each input photo (the folder which you wrote down after --results) and photos with detected neurons outlined in red boxes ('runs' folder)
