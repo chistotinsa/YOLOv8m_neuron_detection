@@ -23,7 +23,7 @@ To run the main script —
 2. Run neuron_count.py from cmd/bash with flags --photo_path (folder with photos to process) and --results (path to the excel file with results) like this:  
 `python neuron_count.py --photo_path 'F:\Desktop\projects\neuron_detection\photos' --results 'F:\Desktop\projects\neuron_detection\results\results.xlsx'`
 4. The output includes Excel table with number of alive neurons on a random
-   300 μm hippocampus area per each input photo (the folder which you wrote down after --results) and photos with detected neurons outlined in red boxes ('runs' folder)
+   300 μm hippocampus area per each input photo and photos with detected neurons outlined in red boxes ('runs' folder)
 
 ## How we made this model
 The idea arose due to the fact that many biologists, for the purpose of brain research, are forced to 
