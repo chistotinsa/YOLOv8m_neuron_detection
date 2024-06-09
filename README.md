@@ -35,3 +35,15 @@ That's why we came up with this project.
 2. We made our own hippocampus neurons dataset, labeled it
 3. and finetuned Keremberke`s YOLOv8m on it.
 4. Then we wrote script that counts alive neurons on a random 300 μm hippocampus area.
+
+## Acknowledgements
+Many thanks to Daria Avrova for the idea of ​​the project, organization and providing the dataset,
+and to all those who helped us with the dataset annotation:
+
+Avrova Daria Kirillovna
+Zyrin Artem Vladimirovich
+Savchenko Alexandra Vitalievna
+Vityak Elizaveta Alekseevna
+Bromberg Anastasia Alekseevna
+Tretyakova Alina Dmitrievna
+Minnebaev Ruslan Ildusovich
