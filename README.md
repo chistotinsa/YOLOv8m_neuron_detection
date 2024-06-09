@@ -40,10 +40,10 @@ That's why we came up with this project.
 Many thanks to Daria Avrova for the idea of ​​the project, organization and providing the dataset,
 and to all those who helped us with the dataset annotation:
 
-Avrova Daria Kirillovna
-Zyrin Artem Vladimirovich
-Savchenko Alexandra Vitalievna
-Vityak Elizaveta Alekseevna
-Bromberg Anastasia Alekseevna
-Tretyakova Alina Dmitrievna
+Avrova Daria Kirillovna, 
+Zyrin Artem Vladimirovich, 
+Savchenko Alexandra Vitalievna, 
+Vityak Elizaveta Alekseevna, 
+Bromberg Anastasia Alekseevna, 
+Tretyakova Alina Dmitrievna, 
 Minnebaev Ruslan Ildusovich
