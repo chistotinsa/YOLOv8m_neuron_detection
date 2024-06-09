@@ -1,6 +1,6 @@
 # YOLOv8m neuron detection
 
-This model allows count neurons stained using the Nissl method in the CA1 field of the hippocampus.
+This model allows to count neurons stained using the Nissl method in the CA1 field of the hippocampus.
 It takes 300μm area on a hippocampus randomly and counts alive cells on it.
 
 The model takes photos of a rat`s hippocampus specimen as input. The microscopic magnification is 20x, 
