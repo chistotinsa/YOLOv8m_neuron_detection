@@ -82,7 +82,7 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
 def run(photo_path: str,
         results: str,
         save: bool = True,
-        model_path: str = 'models/YOLOv8m_brain_cell_v3_maP50_0.742.pt') -> None:
+        model_path: str = '../models/YOLOv8m_brain_cell_v3_maP50_0.742.pt') -> None:
 
     files_count = len(os.listdir(photo_path))
     preds = yolo_inference(photo_path, model_path, files_count, save)
