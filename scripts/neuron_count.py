@@ -4,19 +4,17 @@ import numpy as np
 import pandas as pd
 import random
 from typing import List, Tuple
-from inference_model import yolo_inference  # Убедитесь, что этот модуль доступен
-from del_outliers import del_outliers  # Убедитесь, что этот модуль доступен
+from inference_model import yolo_inference
+from del_outliers import del_outliers
 import argparse
-import matplotlib.pyplot as plt
 
-PIXEL_STEP = 950
+PIXEL_STEP = 700
 
 
 # 870pxl = 300µm on a 2048х1504pxl photo with microscopic magnification 20x.
-# We set pixel_step = 950pxl for tech reasons (to add a frame in which
-# neurons that fall more than half into the 300 µm area will be detected).
+# We set pixel_step = 700pxl for tech reasons.
 # If you have another photo`s resolution: find out how many pixels are in 300µm
-# on your photo, add 9.2% to get your PIXEL_STEP value.
+# on your photo, subtract ~20% to get your PIXEL_STEP value.
 
 def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_step: int) -> Tuple[str, int]:
     """
@@ -54,7 +52,6 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     # Setting min distance from a random point on the trendline to the pic's edge
     min_distance_from_edge = pixel_step / 2
 
-    # Установка максимального количества попыток
     max_attempts = 100
     attempts = 0
 
@@ -73,11 +70,11 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     if attempts == max_attempts:
         print(f'Warning: Could not find a valid point after {max_attempts} attempts. Using fallback values.')
 
-        # Выбор точки по умолчанию - центр тренда
+        # Setting default point - the trend`s center
         random_point_x = x_trend_pixels[50]
         random_point_y = y_trend_pixels[50]
 
-    half_patch_size = pixel_step // 2  # Размер половины области
+    half_patch_size = pixel_step // 2
 
     # Calculating the boundaries of a cropped area
     left_x = int(random_point_x - half_patch_size)
@@ -85,7 +82,7 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     right_x = int(random_point_x + half_patch_size)
     top_y = int(random_point_y + half_patch_size)
 
-    # Вычисление количества аннотаций в области обрезки
+    # Calculating the number of annotations in a croped area
     num_annotations_in_patch = 0
     for annotation in intrend_annotations:
         x1, y1, x2, y2 = annotation
@@ -102,13 +99,11 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
 
 def run(photo_path: str,
         results: str,
-        save: bool = True,
+        save: bool = False,
         model_path: str = 'models/YOLOv8m_brain_cell_v3_maP50_0.742.pt') -> None:
 
-    # Список допустимых расширений файлов изображений
     valid_extensions = ('.bmp', '.jpg', '.jpeg', '.png')
 
-    # Получаем только файлы изображений
     image_files = [f for f in os.listdir(photo_path) if f.lower().endswith(valid_extensions)]
     files_count = len(image_files)
 
@@ -152,3 +147,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#TODO: поработать над размером кропа, сейчас это квадрат 980х980 на фото 2048х1504, это очень много
+#TODO: + есть лимиты от края - это половина от 980, т.е. очень мало места остается для выбора центра кропа.

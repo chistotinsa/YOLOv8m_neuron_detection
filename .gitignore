@@ -6,5 +6,5 @@ scripts/train_model.py
 scripts/parse_yolo_annot.py
 runs/
 venv/
-results/results.xlsx
+results/
 data/
