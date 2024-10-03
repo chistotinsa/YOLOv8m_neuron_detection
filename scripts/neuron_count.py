@@ -73,29 +73,24 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
     if attempts == max_attempts:
         print(f'Warning: Could not find a valid point after {max_attempts} attempts. Using fallback values.')
 
-        # Выбор точки по умолчанию, чтобы она находилась в пределах изображения
-        random_point_x = min_distance_from_edge
-        random_point_y = min_distance_from_edge
-
-        # Выбор точки, чтобы она была в пределах изображения
-        if image.shape[1] - min_distance_from_edge > 0 and image.shape[0] - min_distance_from_edge > 0:
-            random_point_x = min(image.shape[1] - min_distance_from_edge, random_point_x)
-            random_point_y = min(image.shape[0] - min_distance_from_edge, random_point_y)
+        # Выбор точки по умолчанию - центр тренда
+        random_point_x = x_trend_pixels[50]
+        random_point_y = y_trend_pixels[50]
 
     half_patch_size = pixel_step // 2  # Размер половины области
 
     # Calculating the boundaries of a cropped area
-    top_left_x = int(random_point_x - half_patch_size)
-    top_left_y = int(random_point_y - half_patch_size)
-    bottom_right_x = int(random_point_x + half_patch_size)
-    bottom_right_y = int(random_point_y + half_patch_size)
+    left_x = int(random_point_x - half_patch_size)
+    bottom_y = int(random_point_y - half_patch_size)
+    right_x = int(random_point_x + half_patch_size)
+    top_y = int(random_point_y + half_patch_size)
 
     # Вычисление количества аннотаций в области обрезки
     num_annotations_in_patch = 0
     for annotation in intrend_annotations:
         x1, y1, x2, y2 = annotation
 
-        if x1 >= top_left_x and y1 >= top_left_y and x2 <= bottom_right_x and y2 <= bottom_right_y:
+        if x1 >= left_x and y1 <= top_y and x2 <= right_x and y2 >= bottom_y:
             num_annotations_in_patch += 1
 
     image_name = os.path.splitext(os.path.basename(image_path))[0]
