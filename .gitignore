@@ -7,3 +7,4 @@ scripts/parse_yolo_annot.py
 runs/
 venv/
 results/results.xlsx
+data/
