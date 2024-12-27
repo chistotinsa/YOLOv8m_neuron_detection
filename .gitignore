@@ -8,3 +8,4 @@ runs/
 venv/
 results/
 data/
+yolov8n.pt
