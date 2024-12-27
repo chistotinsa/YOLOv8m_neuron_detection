@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import threading
 from neuron_count import run
+import pandas as pd
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, '..', 'models', 'YOLOv8m_brain_cell_v3_maP50_0.742.pt')
