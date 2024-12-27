@@ -136,8 +136,8 @@ def main():
     parser = argparse.ArgumentParser(
         description=r"Нейросеть, считающая количество живых нейронов в области гиппокампа = 300мкм")
 
-    parser.add_argument("--save", type=bool, required=False, default=True,
-                        help=r"Сохранять или нет результаты работы модели в формате фото с размеченными нейронами, по умолчанию --save True")
+    parser.add_argument("--save", type=bool, required=False, default=False,
+                        help=r"Сохранять или нет результаты работы модели в формате фото с размеченными нейронами, по умолчанию False")
     parser.add_argument("--photo_path", type=str, required=True,
                         help=r"Укажите полный путь папки с фото для обработки, например --photo_path 'C:\Users\user\Desktop\folder'")
     parser.add_argument("--results", type=str, required=True,
