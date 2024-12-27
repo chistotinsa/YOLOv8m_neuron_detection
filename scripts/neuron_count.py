@@ -8,6 +8,9 @@ from inference_model import yolo_inference
 from del_outliers import del_outliers
 import argparse
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, '..', 'models', 'YOLOv8m_brain_cell_v3_maP50_0.742.pt')
+
 PIXEL_STEP = 700
 
 
@@ -100,7 +103,7 @@ def neuron_count(intrend_annotations: List[List[float]], image_path: str, pixel_
 def run(photo_path: str,
         results: str,
         save: bool = False,
-        model_path: str = 'models/YOLOv8m_brain_cell_v3_maP50_0.742.pt') -> None:
+        model_path: str = model_path) -> None:
 
     valid_extensions = ('.bmp', '.jpg', '.jpeg', '.png')
 
